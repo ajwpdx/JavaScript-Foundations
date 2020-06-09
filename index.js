@@ -85,11 +85,11 @@ console.log(monthlyPayment)
 If your name is `Oscar` mortgageCalculator() should return "Oscar, your monthly rate is 1073.64"
 */
 
-function mortgageCalculator(name,pmt){
+function mortgageCalc1(name,pmt){
    return name + ", your monthly payment is $" + Number(pmt).toFixed(2)
 }
 
-console.log(mortgageCalculator(name,monthlyPayment))
+console.log(mortgageCalc1(name,monthlyPayment))
 
 // 🏡 Task 4: Arguments and Parameters
 /* Substitute the variables in your functions for parameters such that you can substitute `P`, `I`, and `N` when you call the function.
@@ -98,8 +98,14 @@ For example,
 mortgageCalculator(200000, 0.05, 30); <-- should return 1,073.64
 */
 
+function mortgageCalc2 (name,p,i,y) {
+    var i = i/12;
+    let n = y*12;
+    let pmt = p*(i*Math.pow(1+i,n) / (Math.pow(1+i,n)-1));
+    return name + ", your monthly payment is $" + Number(pmt).toFixed(2);
+}
 
-
+console.log(mortgageCalc2(name,p,int,years))
 
 
 // 🏡 Task 5: Conditionals
@@ -109,9 +115,23 @@ Then, add control flow within your function such that IF creditScore is above 74
 
 Hint: To drop an interest rate by 5% you can take monthlyRate and multiply it by 0.95. Similarly, to increase an interest rate by 5% you'd do monthlyRate * 1.05. 
 */
+let cScore = 750
 
+function mortgageCalc3 (name,p,i,y,cScore) {
+    if (cScore > 740){
+        var i = i*.95;
+    } else if (cScore < 660){
+        var i = i*1.05;
+    } else{
+        var i = i*1;
+    };
+    var i = i/12;
+    let n = y*12;
+    let pmt = p*(i*Math.pow(1+i,n) / (Math.pow(1+i,n)-1));
+    return name + ", your monthly payment is $" + Number(pmt).toFixed(2);
+}
 
-
+console.log(mortgageCalc3(name,p,int,years,cScore))
 
 // 🏡 Task 6: Loops
 /* Write a new function called variableInterestRate. This function should be the same as mortgageCalculator, except it should console.log the monthly payment for 10 different interest rates at 0.5% increments plus or minus 2% from the inputted interest rate. Complete these calculations using a for loop.
