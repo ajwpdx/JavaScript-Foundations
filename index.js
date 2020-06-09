@@ -149,6 +149,16 @@ For example, variableInterestRate(200000, 0.04, 30) should console.log:
 "{Name}, with an interest rate of 0.06, your monthly rate is $1199"
 */
 
+function variableInterestRate (p,int,y) {
+    int = int - 0.02;
+
+    for(let i = 0; i < 10; i++){
+         int+=.005
+         console.log( `${name}, with an interestrate of ${int}, your monthl rate is ${mInt}`);
+}
+
+}
+
 
 
 
