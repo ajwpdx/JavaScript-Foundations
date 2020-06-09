@@ -5,12 +5,12 @@
 */
 
 let principal = 200000;
-let interestRate = 0.05;
+let int = 0.05;
 let years = 30;
 let name = "Alex"
 
 console.log(principal);
-console.log(interestRate);
+console.log(int);
 console.log(name);
 
 // 🏡 Task 1.5: Simple Math
@@ -22,19 +22,19 @@ console.log(name);
 
 //written as a normal function
 
-function monthlyInterestRate(interestRate){
-    return interestRate / 12
-}
+//function monthlyInterestRate(annualInterestRate){
+ //   return annualInterestRate / 12;
+//}
 
-console.log(monthlyInterestRate(interestRate))
+let monthlyInterestRate = int/12;
+
+console.log(monthlyInterestRate);
 
 
 //written as a function expression
-let periods = function(years){
-    return years * 12
-}
+let periods = years*12;
 
-console.log(periods(years))
+console.log(periods);
 
 // 🏡 Task 2: Harder Math
 /* Create your calculator! Use the formula in the ReadMe (also below) to run calculations on your numbers. Save the final value into a variable called monthlyRate. 
@@ -58,12 +58,25 @@ When your math is correct, monthlyRate will equal 1073.64
 // N = number of periods
 // P = principal
 
-function n1(I, N){
-    return Math.pow((1+I),N);
-}
+// Setup
+let i = monthlyInterestRate;
+let n = periods;
+let p = principal;
+let n1 = Math.pow(1+i,n)
 
-console.log(n1(monthlyInterestRate,periods))
+// Numerator
+let numerator = n1*i;
 
+//Denominator
+let denominator = n1-1
+
+//Monthly Rate
+let monthlyRate = numerator/denominator;
+
+//Monthly Payment
+let monthlyPayment = monthlyRate*p;
+
+console.log(monthlyPayment)
 
 
 // 🏡 Task 3: Function
@@ -72,9 +85,11 @@ console.log(n1(monthlyInterestRate,periods))
 If your name is `Oscar` mortgageCalculator() should return "Oscar, your monthly rate is 1073.64"
 */
 
+function mortgageCalculator(name,pmt){
+   return name + ", your monthly payment is $" + Number(pmt).toFixed(2)
+}
 
-
-
+console.log(mortgageCalculator(name,monthlyPayment))
 
 // 🏡 Task 4: Arguments and Parameters
 /* Substitute the variables in your functions for parameters such that you can substitute `P`, `I`, and `N` when you call the function.
