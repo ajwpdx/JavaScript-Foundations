@@ -9,9 +9,9 @@ let int = 0.05;
 let years = 30;
 let name = "Alex"
 
-console.log(principal);
-console.log(int);
-console.log(name);
+// console.log(principal);
+// console.log(int);
+// console.log(name);
 
 // 🏡 Task 1.5: Simple Math
 /* To create a monthly mortgage rate calculator, we need to know the number of years in months and the monthly interest rate. 
@@ -28,13 +28,13 @@ console.log(name);
 
 let monthlyInterestRate = int/12;
 
-console.log(monthlyInterestRate);
+// console.log(monthlyInterestRate);
 
 
 //written as a function expression
 let periods = years*12;
 
-console.log(periods);
+// console.log(periods);
 
 // 🏡 Task 2: Harder Math
 /* Create your calculator! Use the formula in the ReadMe (also below) to run calculations on your numbers. Save the final value into a variable called monthlyRate. 
@@ -76,7 +76,7 @@ let monthlyRate = numerator/denominator;
 //Monthly Payment
 let monthlyPayment = monthlyRate*p;
 
-console.log(monthlyPayment)
+// console.log(monthlyPayment)
 
 
 // 🏡 Task 3: Function
@@ -125,13 +125,13 @@ function mortgageCalc3 (name,p,i,y,cScore) {
     } else{
         var i = i*1;
     };
-    var i = i/12;
-    let n = y*12;
-    let pmt = p*(i*Math.pow(1+i,n) / (Math.pow(1+i,n)-1));
-    return name + ", your monthly payment is $" + Number(pmt).toFixed(2);
+    i = i/12;
+    n = y*12;
+    pmt = p*(i*Math.pow(1+i,n) / (Math.pow(1+i,n)-1));
+    console.log(`${name}, your monthly payment is $${Number(pmt).toFixed(2)}`)
 }
 
-console.log(mortgageCalc3(name,p,int,years,cScore))
+mortgageCalc3("Alex",200000, 0.05, 30,750)
 
 // 🏡 Task 6: Loops
 /* Write a new function called variableInterestRate. This function should be the same as mortgageCalculator, except it should console.log the monthly payment for 10 different interest rates at 0.5% increments plus or minus 2% from the inputted interest rate. Complete these calculations using a for loop.
@@ -149,17 +149,19 @@ For example, variableInterestRate(200000, 0.04, 30) should console.log:
 "{Name}, with an interest rate of 0.06, your monthly rate is $1199"
 */
 
-function variableInterestRate (p,int,y) {
-    int = int - 0.02;
-
+function variableInterestRate (name,principal,int,years) {
+    int = int - .025
+    period = years*12;
+    mInt = int/12;
+    pmt = principal*(mInt*Math.pow(1+mInt,period) / (Math.pow(1+mInt,period)-1));
     for(let i = 0; i < 10; i++){
-         int+=.005
-         console.log( `${name}, with an interestrate of ${int}, your monthl rate is ${mInt}`);
-}
+        int+=.005;
+        console.log(`${name}, with an interest rate of ${Number(int).toFixed(3)}, your monthly payment is $${Number(pmt).toFixed(0)}`);
 
 }
+}
 
-
+variableInterestRate("Alex",200000, 0.04,30)
 
 
 // 🌟🌟🌟 STRETCH 🌟🌟🌟//
@@ -168,6 +170,24 @@ function variableInterestRate (p,int,y) {
 
 /*  🏡 Add  `Property Tax`, `Homeowner's insurance` and `HOA fees` as parameters in your function to calculate total monthly spending on housing */
 
+function mortgageCalc4 (name,p,i,y,cScore,pTax,ins,hoa) {
+    if (cScore > 740){
+        var i = i*.95;
+    } else if (cScore < 660){
+        var i = i*1.05;
+    } else{
+        var i = i*1;
+    };
+    i = i/12;
+    n = y*12;
+    pTaxM = pTax / 12;
+    insM = ins / 12;
+    hoaM = hoa / 12;
+    pmt = p*(i*Math.pow(1+i,n) / (Math.pow(1+i,n)-1)) + pTaxM + insM + hoaM;
+    console.log(`${name}, your monthly payment is $${Number(pmt).toFixed(2)}`)
+}
+
+mortgageCalc4("Alex",200000,0.04,30,750,4000,700,500)
 
 /* 🏡 Build a calculator function that accepts `monthly payment` and `interest rate` and returns the maximum loan that a person could afford */
 
