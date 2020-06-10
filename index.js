@@ -76,7 +76,7 @@ let monthlyRate = numerator/denominator;
 //Monthly Payment
 let monthlyPayment = monthlyRate*p;
 
-// console.log(monthlyPayment)
+console.log(monthlyPayment)
 
 
 // 🏡 Task 3: Function
@@ -99,9 +99,9 @@ mortgageCalculator(200000, 0.05, 30); <-- should return 1,073.64
 */
 
 function mortgageCalc2 (name,p,i,y) {
-    var i = i/12;
-    let n = y*12;
-    let pmt = p*(i*Math.pow(1+i,n) / (Math.pow(1+i,n)-1));
+    i = i/12;
+    n = y*12;
+    pmt = p*(i*Math.pow(1+i,n) / (Math.pow(1+i,n)-1));
     return name + ", your monthly payment is $" + Number(pmt).toFixed(2);
 }
 
@@ -122,9 +122,7 @@ function mortgageCalc3 (name,p,i,y,cScore) {
         var i = i*.95;
     } else if (cScore < 660){
         var i = i*1.05;
-    } else{
-        var i = i*1;
-    };
+    } 
     i = i/12;
     n = y*12;
     pmt = p*(i*Math.pow(1+i,n) / (Math.pow(1+i,n)-1));
@@ -150,14 +148,20 @@ For example, variableInterestRate(200000, 0.04, 30) should console.log:
 */
 
 function variableInterestRate (name,principal,int,years) {
-    int = int - .025
-    period = years*12;
-    mInt = int/12;
-    pmt = principal*(mInt*Math.pow(1+mInt,period) / (Math.pow(1+mInt,period)-1));
+    int -= 0.02
+    
     for(let i = 0; i < 10; i++){
-        int+=.005;
-        console.log(`${name}, with an interest rate of ${Number(int).toFixed(3)}, your monthly payment is $${Number(pmt).toFixed(0)}`);
+        
+        period = years*12;
+        
+        mInt = int/12;
 
+        pmt = principal*(mInt*Math.pow(1+mInt,period) / (Math.pow(1+mInt,period)-1));
+      
+        console.log(`${name}, with an interest rate of ${Number(int).toFixed(3)}%, your monthly payment is $${Number(pmt).toFixed(0)}`);
+       
+        int+=.005;
+       
 }
 }
 
